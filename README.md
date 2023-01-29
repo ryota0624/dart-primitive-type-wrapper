@@ -1,9 +1,10 @@
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+for easy implements [domain primitive](https://freecontent.manning.com/domain-primitives-what-they-are-and-how-you-can-use-them-to-make-more-secure-software/)
+
+on Dart Primitive Types (int, double, String...)
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+* You can define more TypeSafe Primitive Type.
 
 ## Getting started
 
@@ -13,14 +14,23 @@ start using the package.
 ## Usage
 
 TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+to [`/example`](./example/dart_primitive_type_wrapper_example.dart) folder. 
 
 ```dart
-const like = 'sample';
+class Price extends TaggedPositiveInt with TaggedPositiveIntSubtraction {
+  Price(super.value);
+
+  @override
+  Price newInstance(int n) => Price(n);
+}
+
+main() {
+  final price300 = Price(100) + Price(200);
+}
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+this is hobby library.
+
+Dart [Static Metaprogramming](https://github.com/dart-lang/language/issues/1482) maybe introduce me more cool solution.
