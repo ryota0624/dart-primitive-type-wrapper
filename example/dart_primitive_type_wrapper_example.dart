@@ -13,24 +13,41 @@ class HumanAge extends TaggedPositiveInt {
   @override
   HumanAge newInstance(int n) => HumanAge(n);
 
+  // --- HumanAge behaviors
+
   static HumanAge born = HumanAge(0);
 
   HumanAge glowOld() => this + HumanAge(1);
 }
 
+// Simple UseCase
 class UserId extends TaggedString<UserId> {
   UserId(super.value);
 }
 
-mixin CardIdContext on TaggedString<CardId> {
+class Card {
+  final TaggedString<Card> id;
+
+  static TaggedString<Card> cardId(String? pan) {
+    return pan != null ? PANCardId(pan) : UUIDCardId('53b5257f-1392-4f35-9467-1ee8193008c5');
+  }
+
+  Card(String? pan) : id = cardId(pan);
+}
+
+// PAN(Personal Account Number)
+mixin PANCardIdContext on TaggedString<Card> {
   @override
   String toString() {
     return List.filled(value.length, '*').join();
   }
 }
 
-class CardId = TaggedString<CardId> with CardIdContext;
+class PANCardId = TaggedString<Card> with PANCardIdContext;
 
+mixin UUIDCardIdContext on TaggedString<Card> {}
+
+class UUIDCardId = TaggedString<Card> with UUIDCardIdContext;
 
 void main() {
   final price = Price(1) + Price(4);
@@ -50,5 +67,11 @@ void main() {
   // could not assign different type.
   // final CardId cardId = UserId('1');
   print('UserId: ${UserId('hello')}');
-  print('CardId: ${CardId('sensitive_id')}');
+
+  final uuidCard = Card(null);
+  print('uuidCard.id: ${uuidCard.id}');
+
+  final panCard = Card('xxxx-yyyy-zzzz-0000');
+  print('panCard.id: ${panCard.id}');
+
 }
