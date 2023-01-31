@@ -33,4 +33,4 @@ main() {
 
 this is hobby library.
 
-Dart [Static Metaprogramming](https://github.com/dart-lang/language/issues/1482) maybe introduce me more cool solution.
+Dart [Static Metaprogramming](https://github.com/dart-lang/language/issues/1482) or [value-class](https://github.com/dart-lang/sdk/blob/main/tools/experimental_features.yaml#:~:text=Sound%20variance%22-,value%2Dclass%3A,-help%3A%20%22) maybe introduce me more cool solution.
